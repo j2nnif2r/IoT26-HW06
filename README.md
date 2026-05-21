@@ -138,7 +138,7 @@ return msg;
 - Sent vehicle image to OpenALPR API
 - Detected and displayed car plate number
 
-<img width="1280" height="1258" alt="image" src="https://github.com/user-attachments/assets/173b2573-ed50-47b7-b082-50ac444cd9fe" />
+<img height="400" src="https://github.com/user-attachments/assets/173b2573-ed50-47b7-b082-50ac444cd9fe" />
 
 
 
