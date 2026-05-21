@@ -95,7 +95,7 @@ The workflow performs:
 4. Display detected plate number on dashboard
 
 
-<img width="3024" height="4032" alt="KakaoTalk_20260521_185819470" src="https://github.com/user-attachments/assets/372d5327-5b97-4f98-9a22-ee1839b125e8" />
+<img height="400" src="https://github.com/user-attachments/assets/372d5327-5b97-4f98-9a22-ee1839b125e8" />
 
 
 
@@ -152,8 +152,7 @@ Tutorial followed:
 
 ---
 
-## 📂 Repository
-- Notion
+## 📂 Repository- Notion
 https://www.notion.so/Team-F-34f502a3cc6c80aa8522e0026b441b93
 
 ---
