@@ -94,7 +94,10 @@ The workflow performs:
 3. Receive plate recognition result
 4. Display detected plate number on dashboard
 
-<img src="여기에_NodeRED_플로우_스크린샷_업로드" width="500"/>
+
+<img width="3024" height="4032" alt="KakaoTalk_20260521_185819470" src="https://github.com/user-attachments/assets/372d5327-5b97-4f98-9a22-ee1839b125e8" />
+
+
 
 ---
 
@@ -135,7 +138,8 @@ return msg;
 - Sent vehicle image to OpenALPR API
 - Detected and displayed car plate number
 
-<img src="여기에_결과_사진_업로드" width="500"/>
+<img width="1280" height="1258" alt="image" src="https://github.com/user-attachments/assets/173b2573-ed50-47b7-b082-50ac444cd9fe" />
+
 
 
 
@@ -149,7 +153,8 @@ Tutorial followed:
 ---
 
 ## 📂 Repository
-- Notion Upload
+- Notion
+https://www.notion.so/Team-F-34f502a3cc6c80aa8522e0026b441b93
 
 ---
 
