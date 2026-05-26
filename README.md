@@ -142,7 +142,8 @@ Detected Objects:
 - Detected cars in real time using YOLO
 - Displayed object detection results on monitor
 
-<img height="400" src="https://github.com/user-attachments/assets/173b2573-ed50-47b7-b082-50ac444cd9fe" />
+<img height="400" src="https://github.com/user-attachments/assets/6646c0df-1df1-4d70-b499-59d4ab5a56aa" />
+
 
 ---
 
