@@ -88,26 +88,32 @@ Example Python code:
 
 ```python
 from ultralytics import YOLO
-import cv2
+import subprocess
+import os
 
-model = YOLO("yolov8n.pt")
+# 1. Take a photo using Raspberry Pi Camera
+image_name = "car.jpg"
 
-cap = cv2.VideoCapture(0)
+print("Taking a photo...")
+subprocess.run(["rpicam-still", "-o", image_name, "--nopreview"])
 
-while True:
-    ret, frame = cap.read()
+# 2. Check if the image was saved
+if not os.path.exists(image_name):
+    print("Error: Image was not saved.")
+    exit()
 
-    results = model(frame)
+print(f"Photo saved as {image_name}")
 
-    annotated_frame = results[0].plot()
+# 3. Load YOLO11 nano model
+print("Loading YOLO model...")
+model = YOLO("yolo11n.pt")
 
-    cv2.imshow("YOLO Car Detection", annotated_frame)
+# 4. Run object detection
+print("Running YOLO detection...")
+results = model.predict(source=image_name, save=True)
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-
-cap.release()
-cv2.destroyAllWindows()
+print("Detection finished.")
+print("Result image is saved in runs/detect/predict folder.")
 ```
 
 ---
