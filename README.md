@@ -1,16 +1,19 @@
 # IoT26-HW06
 
 ## Project Overview
-This project demonstrates a **Car Plate Recognition System** using **Raspberry Pi** and **Node-RED**.  
-By using the OpenALPR (Automatic License Plate Recognition) API, the system can detect and recognize vehicle license plates from images captured by the Raspberry Pi camera.
+This project demonstrates a **Car Detection System** using **Raspberry Pi** and **YOLO (You Only Look Once)** object detection model.  
+The system detects cars in real time through the Raspberry Pi camera and displays the detection results on the monitor.
+
+By running YOLO on Raspberry Pi, users can experience lightweight AI-based object detection in an IoT environment.
 
 ---
 
 ## Objective
-- Build a car plate recognition system using Raspberry Pi and Node-RED
-- Use OpenALPR API for automatic license plate recognition
-- Practice image processing and IoT workflow integration
-- Learn Node-RED dashboard and API communication
+- Build a real-time car detection system using Raspberry Pi
+- Install and run YOLO object detection model
+- Detect vehicles through Raspberry Pi camera input
+- Practice AI-based computer vision on edge devices
+- Learn Raspberry Pi AI and IoT integration
 
 ---
 
@@ -19,59 +22,51 @@ By using the OpenALPR (Automatic License Plate Recognition) API, the system can 
 - Raspberry Pi Camera Module
 - microSD Card
 - Power Supply
+- HDMI Monitor
 - Wi-Fi / Ethernet Connection
 
 ---
 
 ## Software Requirements
 - Raspberry Pi OS
-- Node-RED
-- OpenALPR API
-- Web Browser for Dashboard Access
+- Python 3
+- Ultralytics YOLO
+- OpenCV
+- Picamera2
 
 ---
 
 ## Installation Process
 
-### 1. Install Node-RED
-Update Raspberry Pi and install Node-RED.
+### 1. Update Raspberry Pi
 
 ```bash
-bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
-```
-
-Enable Node-RED service:
-
-```bash
-sudo systemctl enable nodered.service
-```
-
-Start Node-RED:
-
-```bash
-node-red-start
+sudo apt update && sudo apt upgrade -y
 ```
 
 ---
 
-### 2. Access Node-RED Dashboard
-Open browser and access:
+### 2. Install Required Packages
 
 ```bash
-http://<RaspberryPi_IP_Address>:1880
+sudo apt install python3-pip -y
+```
+
+Install YOLO and OpenCV:
+
+```bash
+pip install ultralytics opencv-python
+```
+
+Install Picamera2:
+
+```bash
+sudo apt install python3-picamera2 -y
 ```
 
 ---
 
-### 3. Configure OpenALPR API
-- Create OpenALPR account
-- Get API Secret Key
-- Configure API request in Node-RED flow
-
----
-
-### 4. Connect Raspberry Pi Camera
-Enable camera interface:
+### 3. Enable Raspberry Pi Camera
 
 ```bash
 sudo raspi-config
@@ -87,79 +82,87 @@ Reboot Raspberry Pi.
 
 ---
 
-## Node-RED Workflow
-The workflow performs:
-1. Capture image from Raspberry Pi camera
-2. Send image to OpenALPR API
-3. Receive plate recognition result
-4. Display detected plate number on dashboard
+### 4. Run YOLO Car Detection
 
+Example Python code:
 
-<img height="400" src="https://github.com/user-attachments/assets/372d5327-5b97-4f98-9a22-ee1839b125e8" />
+```python
+from ultralytics import YOLO
+import cv2
 
+model = YOLO("yolov8n.pt")
 
+cap = cv2.VideoCapture(0)
 
----
+while True:
+    ret, frame = cap.read()
 
-## Example API Request
+    results = model(frame)
 
-```javascript
-msg.headers = {
-    "content-type": "application/json"
-};
+    annotated_frame = results[0].plot()
 
-msg.payload = {
-    secret_key: "YOUR_OPENALPR_SECRET_KEY",
-    image_url: "IMAGE_URL"
-};
+    cv2.imshow("YOLO Car Detection", annotated_frame)
 
-return msg;
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
 ```
 
 ---
 
-## 🧪 Recognition Result Example
+## System Workflow
+The workflow performs:
 
-```json
-{
-  "results": [
-    {
-      "plate": "12ABC345",
-      "confidence": 89.5
-    }
-  ]
-}
+1. Capture real-time video from Raspberry Pi camera
+2. Process image using YOLO model
+3. Detect cars in the frame
+4. Display detection results on monitor
+
+<img height="400" src="https://github.com/user-attachments/assets/372d5327-5b97-4f98-9a22-ee1839b125e8" />
+
+
+---
+
+## Detection Result Example
+
+```text
+Detected Objects:
+- car
+- truck
+- bus
 ```
 
 ---
 
 ## 📸 Result
-- Successfully connected Raspberry Pi with Node-RED
-- Sent vehicle image to OpenALPR API
-- Detected and displayed car plate number
+- Successfully installed YOLO on Raspberry Pi
+- Connected Raspberry Pi camera successfully
+- Detected cars in real time using YOLO
+- Displayed object detection results on monitor
 
 <img height="400" src="https://github.com/user-attachments/assets/173b2573-ed50-47b7-b082-50ac444cd9fe" />
-
-
-
 
 ---
 
 ## 🛠️ Reference
-Tutorial followed:
 
-- https://randomnerdtutorials.com/car-plate-recognition-system-with-raspberry-pi-and-node-red/
+- https://docs.ultralytics.com/guides/raspberry-pi/
+- https://www.raspberrypi.com/news/object-detection-with-ultralytics-yolo26-on-the-raspberry-pi/
+- https://core-electronics.com.au/guides/raspberry-pi/getting-started-with-yolo-object-and-animal-recognition-on-the-raspberry-pi/
+- https://www.youtube.com/watch?v=XKIm_R_rIeQ
 
 ---
 
-## 📂 Repository- Notion
+## Repository - Notion
 https://www.notion.so/Team-F-34f502a3cc6c80aa8522e0026b441b93
 
 ---
 
-## 💡 What I Learned
-- How to use Node-RED with Raspberry Pi
-- Basics of API communication
-- Image-based license plate recognition
-- IoT automation using Node-RED workflows
-- Integrating external AI services into Raspberry Pi projects
+## What I Learned
+- How to install and run YOLO on Raspberry Pi
+- Basics of real-time object detection
+- Using OpenCV with Raspberry Pi camera
+- AI-based computer vision on edge devices
+- Integrating AI into IoT systems
