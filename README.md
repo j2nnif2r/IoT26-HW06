@@ -116,6 +116,9 @@ print("Detection finished.")
 print("Result image is saved in runs/detect/predict folder.")
 ```
 
+<img height="400" src="https://github.com/user-attachments/assets/2dd3fcf0-f237-4a47-b430-f03cb9367e24" />
+
+
 ---
 
 ## System Workflow
