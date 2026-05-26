@@ -130,8 +130,6 @@ The workflow performs:
 ```text
 Detected Objects:
 - car
-- truck
-- bus
 ```
 
 ---
